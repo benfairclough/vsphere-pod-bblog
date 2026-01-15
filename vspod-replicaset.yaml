@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: benblog
+  name: non-privilidged-bblog
   namespace: vmservice
 spec:
   replicas: 3
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: benblog
+      app: non-privilidged-bblog
   template:
     metadata:
       labels:
-        app: benblog
+        app: non-privilidged-bblog
     spec:
       containers:
         - image: harbor.home.ads:443/library/upbblog:v2
-          name: securebenblog
+          name: non-privilidged-bblog
           ports:
             - containerPort: 80
           securityContext:
