@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: benblog-ui
+  namespace: vmservice
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: benblog
+  type: LoadBalancer

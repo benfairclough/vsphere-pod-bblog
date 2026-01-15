@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: benblog
+  namespace: vmservice
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: benblog
+  template:
+    metadata:
+      labels:
+        app: benblog
+    spec:
+      containers:
+        - image: harbor.home.ads:443/library/upbblog:v2
+          name: securebenblog
+          ports:
+            - containerPort: 80
+          securityContext:
+            runAsUser: 1111
+            privileged: false
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
