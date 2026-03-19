@@ -15,17 +15,7 @@ spec:
         app: non-privilidged-bblog
     spec:
       containers:
-        - image: harbor.home.ads:443/library/upbblog:v2
+        - image: harbor.home.ads:443/library/bblog:v1
           name: non-privilidged-bblog
           ports:
             - containerPort: 8080
-          securityContext:
-            runAsUser: 1111
-            privileged: false
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-                - ALL
-            runAsNonRoot: true
-            seccompProfile:
-              type: RuntimeDefault
